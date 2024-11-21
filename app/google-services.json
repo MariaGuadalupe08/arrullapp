@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "686992578611",
+    "project_id": "apinotas-5661a",
+    "storage_bucket": "apinotas-5661a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686992578611:android:676837355b518bec1d6b46",
+        "android_client_info": {
+          "package_name": "com.example.arrullapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG1E34bnDeqb0yt1P-9JUl2tbfAhJIcKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

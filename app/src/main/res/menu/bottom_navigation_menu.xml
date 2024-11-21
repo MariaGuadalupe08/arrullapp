@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/nav_notas"
+    android:icon="@drawable/clipboard_regular"
+    android:title="Notas" />
+<item
+    android:id="@+id/nav_tu_bebe"
+    android:icon="@drawable/baby_carriage_solid"
+    android:title="Tu Bebe" />
+<item
+    android:id="@+id/nav_para_mama"
+    android:icon="@drawable/person_breastfeeding_solid"
+    android:title="Para Mama" />
+<item
+    android:id="@+id/nav_ejercitate"
+    android:icon="@drawable/dumbbell_solid"
+    android:title="Ejercitate" />
+</menu>

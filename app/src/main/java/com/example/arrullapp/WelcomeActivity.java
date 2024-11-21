@@ -15,11 +15,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class WelcomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private BottomNavigationView bottomNavigationView;
     private ActionBarDrawerToggle toggle;
 
     @Override
@@ -29,6 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // Configurar la Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -38,7 +41,6 @@ public class WelcomeActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Configurar el ícono de navegación
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView.setNavigationItemSelectedListener(item -> {
@@ -56,10 +58,33 @@ public class WelcomeActivity extends AppCompatActivity {
             return true;
         });
 
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_notas) {
+                selectedFragment = new NotasFragment();
+            } else if (itemId == R.id.nav_tu_bebe) {
+                selectedFragment = new TuBebeFragment();
+            } else if (itemId == R.id.nav_para_mama) {
+                selectedFragment = new ParaMamaFragment();
+            } else if (itemId == R.id.nav_ejercitate) {
+                selectedFragment = new EjercitateFragment();
+            }
+
+            if (selectedFragment != null) {
+                loadFragment(selectedFragment);
+                return true;
+            }
+
+            return false;
+        });
+
         // Cargar el fragmento inicial por defecto
         if (savedInstanceState == null) {
             navigationView.setCheckedItem(R.id.nav_home);
-            loadFragment(new HomeFragment());
+            bottomNavigationView.setSelectedItemId(R.id.nav_notas);
+            loadFragment(new NotasFragment());
         }
 
         // Manejo del botón de retroceso
