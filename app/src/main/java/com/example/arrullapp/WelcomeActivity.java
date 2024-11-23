@@ -1,8 +1,9 @@
 package com.example.arrullapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -15,8 +16,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class WelcomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -52,6 +53,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 loadFragment(new ProfileFragment());
             } else if (id == R.id.nav_settings) {
                 loadFragment(new SettingsFragment());
+            } else if (id == R.id.nav_logout) {
+                logout();
             }
 
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -113,5 +116,20 @@ public class WelcomeActivity extends AppCompatActivity {
         transaction.replace(R.id.fragment_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private void logout() {
+        // Limpiar los datos del usuario de SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply();
+
+        // Redirigir a la pantalla de login
+        Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
+        Toast.makeText(WelcomeActivity.this, "Sesión cerrada", Toast.LENGTH_SHORT).show();
     }
 }

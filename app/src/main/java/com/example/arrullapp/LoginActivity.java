@@ -59,9 +59,8 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("refresh_token", refreshToken);
                         editor.apply();
 
-                        // Ir a la actividad de bienvenida
-                        Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
-                        startActivity(intent);
+                        // Obtener y guardar el ID del usuario
+                        getUserId(user.getUsername(), accessToken);
                     } else {
                         Toast.makeText(LoginActivity.this, "Login failed: No access token received", Toast.LENGTH_SHORT).show();
                     }
@@ -80,6 +79,43 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<UserLoginResponse> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Login failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("LoginError", "Throwable: " + t.getMessage());
+            }
+        });
+    }
+
+    private void getUserId(String username, String accessToken) {
+        Call<User> call = apiService.getUserId(username);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    User user = response.body();
+                    String userId = user.getId();
+
+                    // Guardar el ID del usuario en SharedPreferences
+                    SharedPreferences preferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("user_id", userId);
+                    editor.apply();
+
+                    // Ir a la actividad de bienvenida
+                    Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
+                    startActivity(intent);
+                } else {
+                    try {
+                        String errorBody = response.errorBody().string();
+                        Log.e("UserIdError", "Error Body: " + errorBody);
+                        Toast.makeText(LoginActivity.this, "Failed to get user ID: " + errorBody, Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "Failed to get user ID: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("UserIdError", "Throwable: " + t.getMessage());
             }
         });
     }

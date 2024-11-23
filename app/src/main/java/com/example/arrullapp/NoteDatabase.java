@@ -6,7 +6,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Note.class}, version = 1)
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+/*@Database(entities = {Note.class}, version = 1)
 public abstract class NoteDatabase extends RoomDatabase {
     private static NoteDatabase instance;
 
@@ -22,4 +26,24 @@ public abstract class NoteDatabase extends RoomDatabase {
         }
         return instance;
     }
+}*/
+
+
+public class NoteDatabase {
+    private DatabaseReference databaseReference;
+
+    public NoteDatabase() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("notes");
+    }
+
+    public void saveNoteForUser(String userId, Note note) {
+        databaseReference.child(userId).child(note.getDate()).setValue(note);
+    }
+
+    public void getNotesForUser(String userId, ValueEventListener listener) {
+        databaseReference.child(userId).addListenerForSingleValueEvent(listener);
+    }
 }
+
+
