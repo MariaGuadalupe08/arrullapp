@@ -2,6 +2,8 @@ package com.example.arrullapp;
 
 import com.example.arrullapp.models.UserLoginResponse;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,6 +21,9 @@ public interface ApiService {
 
     @GET("user-id/{username}/")
     Call<User> getUserId(@Path("username") String username);
+
+    @GET("exercises/")
+    Call<List<Exercise>> getExercises();
 }
 
 
