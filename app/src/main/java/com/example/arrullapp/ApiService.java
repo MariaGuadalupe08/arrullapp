@@ -24,6 +24,10 @@ public interface ApiService {
 
     @GET("exercises/")
     Call<List<Exercise>> getExercises();
+
+
+    @GET("bebes/")
+    Call<List<Bebe>> getBebes();
 }
 
 
