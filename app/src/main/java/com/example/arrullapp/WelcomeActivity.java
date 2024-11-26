@@ -17,6 +17,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -67,7 +68,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 loadFragment(new HomeFragment());
             } else if (id == R.id.nav_profile) {
                 loadFragment(new ProfileFragment());
-            }  else if (id == R.id.nav_logout) {
+            } else if (id == R.id.nav_logout) {
                 logout();
             }
 
@@ -111,7 +112,12 @@ public class WelcomeActivity extends AppCompatActivity {
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(GravityCompat.START);
                 } else {
-                    WelcomeActivity.super.onBackPressed();
+                    FragmentManager fm = getSupportFragmentManager();
+                    if (fm.getBackStackEntryCount() > 0) {
+                        fm.popBackStack();
+                    } else {
+                        WelcomeActivity.super.onBackPressed();
+                    }
                 }
             }
         });
@@ -128,7 +134,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
-        transaction.addToBackStack(null);
+        transaction.addToBackStack(null); // Añadir a la back stack
         transaction.commit();
     }
 
@@ -146,4 +152,4 @@ public class WelcomeActivity extends AppCompatActivity {
 
         Toast.makeText(WelcomeActivity.this, "Sesión cerrada", Toast.LENGTH_SHORT).show();
     }
-    }
+}
