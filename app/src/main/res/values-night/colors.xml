@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimaryVariant">#FFEB3B</color>
+    <color name="colorOnPrimary">#000000</color>
+    <color name="colorSecondary">#FF9800</color>
+    <color name="colorSecondaryVariant">#FF9800</color>
+    <color name="colorOnSecondary">#000000</color>
+    <!-- Include corresponding night mode colors -->
+    <color name="colorPrimaryNight">#FF9800</color>
+    <color name="colorPrimaryVariantNight">#FF5722</color>
+    <color name="colorOnPrimaryNight">#000000</color>
+    <color name="colorSecondaryNight">#03DAC6</color>
+    <color name="colorSecondaryVariantNight">#03DAC6</color>
+    <color name="colorOnSecondaryNight">#000000</color>
+</resources>

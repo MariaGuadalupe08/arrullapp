@@ -5,8 +5,6 @@ import com.example.arrullapp.models.UserLoginResponse;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -28,6 +26,13 @@ public interface ApiService {
 
     @GET("bebes/")
     Call<List<Bebe>> getBebes();
+
+    @GET("mami/")
+    Call<List<Mama>> getMamaInfo();
+
+    @GET("devs/")
+    Call<List<Dev>> getDevs();
+
 }
 
 

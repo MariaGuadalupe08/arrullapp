@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFD700"
+    android:padding="16dp">
+
+
+
+<Button
+android:id="@+id/navbar_button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Nuevo"
+android:backgroundTint="@android:color/holo_blue_light"
+    android:textColor="@android:color/white"
+    android:layout_alignParentEnd="true"
+    android:layout_centerVertical="true"
+    android:elevation="4dp"
+    android:visibility="gone" />
+    </RelativeLayout>

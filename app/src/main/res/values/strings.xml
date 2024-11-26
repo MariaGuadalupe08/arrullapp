@@ -1,22 +1,33 @@
 <resources>
-    <!--  Nombre de la aplicación  -->
-    <string name="app_name">arrullapp</string>
-    <!--  Cadenas de navegación del cajón lateral  -->
+    <!-- Nombre de la aplicación -->
+    <string name="app_name">Arrullo</string>
+    <string name="toolbar_button_text">Nuevo</string>
+
+    <!-- Cadenas de navegación del cajón lateral -->
     <string name="navigation_drawer_open">Abrir Menú de Navegación</string>
     <string name="navigation_drawer_close">Cerrar Menú de Navegación</string>
     <string name="nav_home">Inicio</string>
     <string name="nav_profile">Perfil</string>
     <string name="nav_settings">Configuraciones</string>
-    <!--  Mensaje de bienvenida  -->
+
+    <!-- Mensaje de bienvenida -->
     <string name="welcome_message">Bienvenido a Nuestra App</string>
-    <!--  Cadenas de navegación inferior  -->
+
+    <!-- Cadenas de navegación inferior -->
     <string name="nav_notas">Notas</string>
     <string name="nav_tu_bebe">Tu Bebe</string>
     <string name="nav_para_mama">Para Mama</string>
     <string name="nav_ejercitate">Ejercitate</string>
-    <!--  Descripciones de iconos de navegación inferior  -->
+
+    <!-- Descripciones de iconos de navegación inferior -->
     <string name="ic_notes">Notas</string>
     <string name="ic_baby">Tu Bebe</string>
     <string name="ic_mama">Para Mama</string>
     <string name="ic_exercise">Ejercitate</string>
+
+
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="login">Login</string>
+    <string name="logo_desc">App Logo</string>
 </resources>

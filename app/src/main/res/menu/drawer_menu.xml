@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/baby_carriage_solid"
-        android:title="Home" />
-    <item
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/person_breastfeeding_solid"
-        android:title="Profile" />
-    <item
-        android:id="@+id/nav_settings"
-        android:icon="@drawable/dumbbell_solid"
-        android:title="Settings" />
 
-    <item
-        android:id="@+id/nav_logout"
-        android:icon="@drawable/right_from_bracket_solid"
-        android:title="Cerrar Sesión" />
+    <!-- Grupo para navegación principal -->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/baby_carriage_solid"
+            android:title="Mapa" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/person_breastfeeding_solid"
+            android:title="Desarrollador" />
+    </group>
+
+    <!-- Divider -->
+
+
+    <!-- Divider -->
+
+    <group android:id="@+id/account_group">
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/right_from_bracket_solid"
+            android:title="Cerrar Sesión" />
+    </group>
 
 </menu>
-
-

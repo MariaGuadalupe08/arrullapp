@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -24,6 +26,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private BottomNavigationView bottomNavigationView;
     private ActionBarDrawerToggle toggle;
+    private Button toolbarButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,19 @@ public class WelcomeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Referenciar el botón
+        toolbarButton = findViewById(R.id.toolbar_button);
+
+        // Comprobar si el usuario está logueado
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
+        if (isLoggedIn) {
+            toolbarButton.setVisibility(View.VISIBLE);
+        } else {
+            toolbarButton.setVisibility(View.GONE);
+        }
+
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -51,9 +67,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 loadFragment(new HomeFragment());
             } else if (id == R.id.nav_profile) {
                 loadFragment(new ProfileFragment());
-            } else if (id == R.id.nav_settings) {
-                loadFragment(new SettingsFragment());
-            } else if (id == R.id.nav_logout) {
+            }  else if (id == R.id.nav_logout) {
                 logout();
             }
 
@@ -132,4 +146,4 @@ public class WelcomeActivity extends AppCompatActivity {
 
         Toast.makeText(WelcomeActivity.this, "Sesión cerrada", Toast.LENGTH_SHORT).show();
     }
-}
+    }

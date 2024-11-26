@@ -1,32 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@drawable/background_image"
+    tools:context=".RegisterActivity">
 
+    <!-- Logo o imagen de bienvenida -->
+    <LinearLayout
+        android:layout_width="346dp"
+        android:layout_height="313dp">
+
+        <ImageView
+            android:layout_width="333dp"
+            android:layout_height="313dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="32dp"
+            android:width="40dp"
+            android:height="40dp"
+            android:contentDescription="@string/logo_desc"
+            android:src="@drawable/ciguena" />
+    </LinearLayout>
+
+    <!-- Campo de texto para el correo electrónico -->
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email" />
+        android:hint="Escribe tu correo electrónico"
+        android:drawableStart="@drawable/envelope_solid"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:layout_marginBottom="16dp" />
 
+    <!-- Campo de texto para el nombre de usuario -->
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username" />
+        android:hint="Escribe tu nombre de usuario"
+        android:drawableStart="@drawable/circle_user_solid"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:layout_marginBottom="16dp" />
 
+    <!-- Campo de texto para la contraseña -->
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword" />
+        android:hint="Ingresa tu contraseña"
+        android:inputType="textPassword"
+        android:drawableStart="@drawable/key_solid"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:layout_marginBottom="24dp" />
 
+    <!-- Botón de registro -->
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:background="@drawable/button_selector"
+        android:padding="12dp"
+        android:text="Registrar"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 </LinearLayout>

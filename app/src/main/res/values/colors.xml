@@ -1,16 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#FFD700</color>
     <color name="colorPrimaryDark">#B8860B</color>
     <color name="colorAccent">#FFD700</color>
-    <color name="pastel_yellow">#FFFACD</color>
-    <!--  Color amarillo pastel  -->
-    <color name="text_color">#333333</color>
-    <!--  Color del texto  -->
-    <color name="placeholder_image">#FFC107</color>
-    <!--  Placeholder color  -->
+
+    <color name="pastel_yellow">#FFFACD</color> <!-- Color amarillo pastel -->
+    <color name="text_color">#333333</color> <!-- Color del texto -->
+    <color name="placeholder_image">#FFC107</color> <!-- Placeholder color -->
     <color name="error_image">#F44336</color>
     <color name="gold">#FFD700</color>
     <color name="pink">#FFC0CB</color>
+    <color name="button_default">#E91E63</color>
+    <color name="button_pressed">#B30000</color>
+
+    <!-- Define colores theme -->
+
+    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimaryVariant">#FFEB3B</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#D07D00</color>
+    <color name="colorSecondaryVariant">#FF5722</color>
+    <color name="colorOnSecondary">#000000</color>
+    <!-- Include night mode colors with default values -->
+    <color name="colorPrimaryNight">#FF9800</color>
+    <color name="colorPrimaryVariantNight">#FF5722</color>
+    <color name="colorOnPrimaryNight">#FFFFFF</color>
+    <color name="colorSecondaryNight">#03DAC6</color>
+    <color name="colorSecondaryVariantNight">#018786</color>
+    <color name="colorOnSecondaryNight">#000000</color>
+
+
+    <color name="btnColorInic">#000000</color>
+
+    <!-- Define more colors as needed -->
+
 </resources>

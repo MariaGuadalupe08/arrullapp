@@ -1,64 +1,119 @@
 package com.example.arrullapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextView nombreTextView;
+    private TextView apellidoTextView;
+    private TextView numeroTextView;
+    private TextView noControlTextView;
+    private TextView correoTextView;
+    private ImageView fotoImageView;
 
     public ProfileFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Nullable
-    @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_profile, container,false);
-}
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        nombreTextView = view.findViewById(R.id.nombreTextView);
+        apellidoTextView = view.findViewById(R.id.apellidoTextView);
+        numeroTextView = view.findViewById(R.id.numeroTextView);
+        noControlTextView = view.findViewById(R.id.noControlTextView);
+        correoTextView = view.findViewById(R.id.correoTextView);
+        fotoImageView = view.findViewById(R.id.fotoImageView);
+
+        fetchProfileData();
+
+        return view;
+    }
+
+    private void fetchProfileData() {
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        Call<List<Dev>> call = apiService.getDevs();
+
+        call.enqueue(new Callback<List<Dev>>() {
+            @Override
+            public void onResponse(Call<List<Dev>> call, Response<List<Dev>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Dev dev = response.body().get(0); // Asumiendo que solo hay un desarrollador
+                    updateUI(dev);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Dev>> call, Throwable t) {
+                // Maneja el error
+            }
+        });
+    }
+
+    private void updateUI(Dev dev) {
+        nombreTextView.setText(dev.getNombredev());
+        apellidoTextView.setText(dev.getApellidodev());
+        numeroTextView.setText(dev.getNumerodev());
+        noControlTextView.setText(dev.getNocontroldev());
+        correoTextView.setText(dev.getCorreoddev());
+
+        // Cargar imagen desde la URL
+        new LoadImageTask(fotoImageView).execute(dev.getFotodev());
+    }
+
+    private static class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView imageView;
+
+        public LoadImageTask(ImageView imageView) {
+            this.imageView = imageView;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            String url = urls[0];
+            Bitmap bitmap = null;
+            try {
+                InputStream inputStream = new URL(url).openStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            if (bitmap != null) {
+                imageView.setImageBitmap(bitmap);
+            }
+        }
+    }
 }

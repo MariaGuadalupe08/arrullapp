@@ -1,7 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Arrullapp" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- Base application theme for night mode. -->
+    <style name="Base.Theme.Arrullapp" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimaryNight</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariantNight</item>
+        <item name="colorOnPrimary">@color/colorOnPrimaryNight</item>
+        <item name="colorSecondary">@color/colorSecondaryNight</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariantNight</item>
+        <item name="colorOnSecondary">@color/colorOnSecondaryNight</item>
+        <!-- Add more items to customize your theme -->
     </style>
+    <style name="Theme.Arrullapp" parent="Base.Theme.Arrullapp" />
 </resources>
